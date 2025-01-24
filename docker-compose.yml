@@ -1,0 +1,12 @@
+services:
+  starcraft-gather-manager:
+    build:
+      context: .
+    volumes:
+      - .:/app
+      - ../storage-bridge:/submodules/storage-bridge
+      - ../gather-manager:/submodules/gather-manager
+    working_dir: /app
+    tty: true
+    container_name: starcraft-gather-manager
+
