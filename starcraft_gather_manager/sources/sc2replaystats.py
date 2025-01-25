@@ -1,9 +1,16 @@
 from starcraft_gather_manager.typeclass.source import Source
 
 class SC2ReplayStats(Source):
-    def __init__(self):
-        self._name = "sc2replaystats"
-        self._metadata = {"site_description": "SC2 replay stats website"}
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super(SC2ReplayStats, cls).__new__(cls)
+            cls._instance._name = "sc2replaystats"
+            cls._instance._metadata = {"site_description": "SC2 replay stats website"}
+            cls._instance._limit = 500  # Daily limit
+            cls._instance._count = 0    # Tracks how many gatherables have been produced today
+        return cls._instance
 
     @property
     def name(self) -> str:
