@@ -6,6 +6,8 @@ services:
       - .:/app
       - ../storage-bridge:/submodules/storage-bridge
       - ../gather-manager:/submodules/gather-manager
+      - ../log-manager:/submodules/log-manager
+      - ../starcraft-data-orm:/submodules/starcraft-data-orm
     working_dir: /app
     tty: true
     container_name: starcraft-gather-manager
