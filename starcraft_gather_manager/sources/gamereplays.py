@@ -1,9 +1,16 @@
 from starcraft_gather_manager.typeclass.source import Source
 
-class GameReplaysSource:
-    def __init__(self):
-        self._name = "gamereplays"
-        self._metadata = {"site_description": "GameReplays.org"}
+class GameReplays(Source):
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super(GameReplays, cls).__new__(cls)
+            cls._instance._name = "gamereplays"
+            cls._instance._metadata = {"site_description": "GameReplays.org"}
+            cls._instance._limit = 300  # Example limit
+            cls._instance._count = 0    # Tracks how many gatherables have been produced today
+        return cls._instance
 
     @property
     def name(self) -> str:

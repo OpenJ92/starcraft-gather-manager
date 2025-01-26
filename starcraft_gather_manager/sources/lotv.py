@@ -1,9 +1,16 @@
 from starcraft_gather_manager.typeclass.source import Source
 
 class SpawningTool(Source):
-    def __init__(self):
-        self._name = "spawningtool"
-        self._metadata = {"site_description": "SpawningTool website"}
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super(SpawningTool, cls).__new__(cls)
+            cls._instance._name = "spawningtool"
+            cls._instance._metadata = {"site_description": "SpawningTool website"}
+            cls._instance._limit = 500  # Example limit
+            cls._instance._count = 0    # Tracks how many gatherables have been produced today
+        return cls._instance
 
     @property
     def name(self) -> str:
