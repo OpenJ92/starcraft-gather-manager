@@ -7,6 +7,7 @@ services:
       - ../storage-bridge:/submodules/storage-bridge
       - ../gather-manager:/submodules/gather-manager
       - ../log-manager:/submodules/log-manager
+      - ../injection-manager:/submodules/injection-manager
       - ../starcraft-data-orm:/submodules/starcraft-data-orm
     working_dir: /app
     tty: true
